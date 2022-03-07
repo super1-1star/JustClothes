@@ -3,6 +3,17 @@ const { ItemMen, ItemWomen } = require('../Models/model');
 // const WomenController = require('../Controllers/WomenController');
 const router = express.Router();
 
+router.route('/').get((req, res) => {
+  ItemMen.find({})
+    .then((blogs) => {
+      res.send(blogs);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
+
 router
   .route('/men')
   .get((req, res) => {
